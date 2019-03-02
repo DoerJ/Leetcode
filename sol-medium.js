@@ -23,48 +23,48 @@ var convert = function(s, numRows) {
   var i = 0;
   var posIndicator;
   while(i < strLength) {
-      var colArray = new Array();
-      if(colFlag) {
-          var j = 0;
-        	posIndicator = marginCols;
-          while(j < numRows) {
-              if(i < strLength) {
-                  colArray.push(s.charAt(i));
-                	i++;
-              }
-              else {
-                  colArray.push(" ");
-              }
-              j++;
+    var colArray = new Array();
+    if(colFlag) {
+      var j = 0;
+      posIndicator = marginCols;
+      while(j < numRows) {
+        if(i < strLength) {
+              colArray.push(s.charAt(i));
+              i++;
+            }
+            else {
+              colArray.push(" ");
+            }
+            j++;
           }
           colFlag = (marginCols === 0) ? true : false;
-      }
-      else {
+        }
+        else {
           var k = 0;
           while(k < numRows) {
-              if(k === posIndicator) {
-                  colArray.push(s.charAt(i));
-              }
-              else {
-                  colArray.push(" ");
-              }
-              k++;
+            if(k === posIndicator) {
+              colArray.push(s.charAt(i));
+            }
+            else {
+              colArray.push(" ");
+            }
+            k++;
           }
-        	posIndicator--;
-        	colFlag = (posIndicator === 0) ? true : false;
+          posIndicator--;
+          colFlag = (posIndicator === 0) ? true : false;
           i++;
+        }
+        matrix.push(colArray);
       }
-      matrix.push(colArray);
-  }
-  // parse matrix
-  var matrixLength = matrix.length;
-  var p;
-  var q;
-  for(p = 0; p < numRows; p++) {
-      for(q = 0; q < matrixLength; q++) {
+      // parse matrix
+      var matrixLength = matrix.length;
+      var p;
+      var q;
+      for(p = 0; p < numRows; p++) {
+        for(q = 0; q < matrixLength; q++) {
           conversion += matrix[q][p];
+        }
       }
-  }
-  conversion = conversion.split(' ').join('');
-  return conversion;
-};
+      conversion = conversion.split(' ').join('');
+      return conversion;
+    };
