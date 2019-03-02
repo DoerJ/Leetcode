@@ -7,8 +7,8 @@ A P L S I I G
 Y   I   R
 And then read line by line: "PAHNAPLSIIGYIR"
 */
-/**
 
+/**
  * @param {string} s
  * @param {number} numRows
  * @return {string}
