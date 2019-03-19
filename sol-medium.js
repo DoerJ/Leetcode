@@ -138,3 +138,48 @@ var maxArea = function(height) {
   }
   return maxArea;
 };
+
+/**
+Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0?
+Find all unique triplets in the array which gives the sum of zero.
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var threeSum = function(nums) {
+    // sort the array for skipping the duplication
+    nums.sort(function(a,b) { return a - b; });
+    var left, medium, right;
+    var sol = new Array();
+    // let left pointer be the fixed pointer
+    for(left = 0; left < nums.length - 2; left++) {
+        medium = left + 1;
+        right = nums.length - 1;
+        // if item duplicated, skip the current iteration
+        if(left > 0 && nums[left] === nums[left - 1]) continue;
+        while(medium < right) {
+            var sum = nums[left] + nums[medium] + nums[right];
+            if(sum > 0) {
+                right--;
+            }
+            else if(sum < 0) {
+                medium++;
+            }
+            else if(sum === 0) {
+                var sub_sol = new Array();
+                sub_sol.push(nums[left]);
+                sub_sol.push(nums[medium]);
+                sub_sol.push(nums[right]);
+                sol.push(sub_sol);
+                while(nums[medium] === nums[medium + 1]) {
+                    medium++;
+                }
+                while(nums[right] === nums[right - 1]) {
+                    right--;
+                }
+                medium++;
+                right--;
+            }
+        }
+    }
+    return sol;
+};
