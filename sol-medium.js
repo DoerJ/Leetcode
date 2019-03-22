@@ -219,3 +219,49 @@ var threeSumClosest = function(nums, target) {
     }
     return sum;
 };
+
+/**
+Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent.
+A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+Input: "23"
+Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+ * @param {string} digits
+ * @return {string[]}
+ */
+// create map
+var dial_map = new Map();
+dial_map.set('2', ['a', 'b', 'c']);
+dial_map.set('3', ['d', 'e', 'f']);
+dial_map.set('4', ['g', 'h', 'i']);
+dial_map.set('5', ['j', 'k', 'l']);
+dial_map.set('6', ['m', 'n', 'o']);
+dial_map.set('7', ['p', 'q', 'r', 's']);
+dial_map.set('8', ['t', 'u', 'v']);
+dial_map.set('9', ['w', 'x', 'y', 'z']);
+
+var letterCombinations = function(digits) {
+    var sol = new Array();
+    // initialization for backtracking search
+    if(digits.length === 0) {
+        return sol;
+    }
+    else {
+        backtrackingSearch("", digits, sol);
+    }
+    return sol;
+};
+
+var backtrackingSearch = function(combination, next, sol) {
+    // leaf node
+    if(next.length === 0) {
+        sol.push(combination);
+    }
+    else {
+        var next_digit = next.charAt(0);
+        var i;
+        var letters = dial_map.get(next_digit);
+        for(i = 0; i < letters.length; i++) {
+            backtrackingSearch(combination + letters[i], next.substring(1), sol);
+        }
+    }
+}
