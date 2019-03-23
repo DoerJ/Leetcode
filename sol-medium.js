@@ -265,3 +265,36 @@ var backtrackingSearch = function(combination, next, sol) {
         }
     }
 }
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+Given a linked list, remove the n-th node from the end of list and return its head.
+Example:
+Given linked list: 1->2->3->4->5, and n = 2.
+After removing the second node from the end, the linked list becomes 1->2->3->5.
+ * @param {ListNode} head
+ * @param {number} n
+ * @return {ListNode}
+ */
+var removeNthFromEnd = function(head, n) {
+    var dummy = new ListNode(10);
+    dummy.next = head;
+    var fir_pointer = dummy;
+    var sec_pointer = dummy;
+    var i;
+    for(i = 0; i < n; i++) {
+        fir_pointer = fir_pointer.next;
+    }
+    while(fir_pointer.next !== null) {
+        fir_pointer = fir_pointer.next;
+        sec_pointer = sec_pointer.next;
+    }
+    sec_pointer.next = sec_pointer.next.next;
+    return dummy.next;
+};
