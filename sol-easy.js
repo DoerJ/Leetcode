@@ -145,3 +145,56 @@ var searchInsert = function(nums, target) {
   }
   return pos;
 };
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+Merge two sorted linked lists and return it as a new list.
+The new list should be made by splicing together the nodes of the first two lists.
+Example:
+Input: 1->2->4, 1->3->4
+Output: 1->1->2->3->4->4
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var mergeTwoLists = function(l1, l2) {
+    var sol = new ListNode(0);
+    var sol_pointer = sol;
+    var pointer_l1 = l1;
+    var pointer_l2 = l2;
+    while(pointer_l1 !== null && pointer_l2 !== null) {
+        node = new ListNode(0);
+        if(pointer_l1.val > pointer_l2.val) {
+            node.val = pointer_l2.val;
+            pointer_l2 = pointer_l2.next;
+        }
+        else if(pointer_l1.val < pointer_l2.val) {
+            node.val = pointer_l1.val;
+            pointer_l1 = pointer_l1.next;
+        }
+        // val1 = val2
+        else {
+            node.val = pointer_l1.val;
+            node1 = new ListNode(node.val)
+            sol_pointer.next = node1;
+            sol_pointer = sol_pointer.next;
+            pointer_l1 = pointer_l1.next;
+            pointer_l2 = pointer_l2.next;
+        }
+        sol_pointer.next = node;
+        sol_pointer = sol_pointer.next;
+    }
+    if(pointer_l1 === null) {
+        sol_pointer.next = pointer_l2;
+    }
+    else if(pointer_l2 === null) {
+        sol_pointer.next = pointer_l1;
+    }
+    return sol.next;
+};
