@@ -298,3 +298,34 @@ var removeNthFromEnd = function(head, n) {
     sec_pointer.next = sec_pointer.next.next;
     return dummy.next;
 };
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+Given a linked list, swap every two adjacent nodes and return its head.
+You may not modify the values in the list's nodes, only nodes itself may be changed.
+Example:
+Given 1->2->3->4, you should return the list as 2->1->4->3.
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var swapPairs = function(head) {
+    // if less than 2 nodes remaining
+    if(head === null || head.next === null) {
+        return head;
+    }
+    var fir_node = head;
+    var sec_node = head.next;
+    // swap the first two nodes
+    fir_node.next = sec_node.next;
+    sec_node.next = fir_node;
+    head = sec_node;
+    //recursion on the third node
+    head.next.next = swapPairs(head.next.next);
+    return head;
+};
