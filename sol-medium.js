@@ -405,29 +405,31 @@ var permute = function(nums) {
     if(nums.length === 0) {
         return sol;
     }
-    var i;
-    for(i = 0; i < nums.length; i++) {
-        var sub_sol = new Array();
-        var temp_nums = nums;
-        temp_nums.splice(i, 1);
-        sub_sol.push(nums[i]);
-        backtrackingSearch(sub_sol, temp_nums, sol);
+    else {
+        var i;
+        for(i = 0; i < nums.length; i++) {
+            var sub_sol = new Array();
+            sub_sol.push(nums[i]);
+            var remainings = nums.slice();
+            remainings.splice(i, 1);
+            backtrackingSearch(sub_sol, remainings, sol);
+        }
     }
     return sol;
 };
 
 var backtrackingSearch = function(sub_sol, remainings, sol) {
-    // if lowest level of tree
     if(remainings.length === 0) {
         sol.push(sub_sol);
     }
     else {
         var j;
         for(j = 0; j < remainings.length; j++) {
-            sub_sol.push(remainings[j]);
-            var temp_remainings = remainings;
-            temp_remainings.splice(j, 1);
-            backtrackingSearch(sub_sol, temp_remainings, sol);
+            var sub_sols = sub_sol.slice();
+            sub_sols.push(remainings[j]);
+            var sub_remainings = remainings.slice();
+            sub_remainings.splice(j, 1);
+            backtrackingSearch(sub_sols, sub_remainings, sol);
         }
     }
 }
