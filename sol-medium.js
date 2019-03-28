@@ -433,3 +433,53 @@ var backtrackingSearch = function(sub_sol, remainings, sol) {
         }
     }
 }
+
+/**
+Given a collection of numbers that might contain duplicates, return all possible unique permutations.
+Example:
+Input: [1,1,2]
+Output:
+[
+  [1,1,2],
+  [1,2,1],
+  [2,1,1]
+]
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var permuteUnique = function(nums) {
+    nums.sort();
+    var sol = new Array();
+    if(nums.length === 0) {
+        return sol;
+    }
+    else {
+        var i;
+        for(i = 0; i < nums.length; i++) {
+            if(i >= 1 && nums[i] === nums[i - 1]) continue;
+            var sub_sol = new Array();
+            sub_sol.push(nums[i]);
+            var remainings = nums.slice();
+            remainings.splice(i, 1);
+            backtrackingSearch(sub_sol, remainings, sol);
+        }
+    }
+    return sol;
+};
+
+var backtrackingSearch = function(sub_sol, remainings, sol) {
+    if(remainings.length === 0) {
+        sol.push(sub_sol);
+    }
+    else {
+        var j;
+        for(j = 0; j < remainings.length; j++) {
+            if(j >= 1 && remainings[j] === remainings[j - 1]) continue;
+            var sub_sols = sub_sol.slice();
+            sub_sols.push(remainings[j]);
+            var sub_remainings = remainings.slice();
+            sub_remainings.splice(j, 1);
+            backtrackingSearch(sub_sols, sub_remainings, sol);
+        }
+    }
+}
