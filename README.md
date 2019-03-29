@@ -1,10 +1,10 @@
 # leetcode-mySolutions
 My solutions to easy &amp; medium challenges
-### Algorithms and Examples
+## Algorithms and Examples
 
 ### Backtracking Searching(DFS)
 An algorithm that iterates through all the possible solution. Suitable for problems: permutations
-<pre>
+
 Example:
 ```javascript
 /**
@@ -58,4 +58,3 @@ var backtrackingSearch = function(sub_sol, remainings, sol) {
 }
 
 ```
-</pre>
