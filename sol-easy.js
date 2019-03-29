@@ -198,3 +198,29 @@ var mergeTwoLists = function(l1, l2) {
     }
     return sol.next;
 };
+
+/**
+Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
+Example:
+Input: [-2,1,-3,4,-1,2,1,-5,4],
+Output: 6
+Explanation: [4,-1,2,1] has the largest sum = 6.
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxSubArray = function(nums) {
+    if(nums.length === 1) {
+        return nums[0]
+    }
+    var dp_array = new Array(nums.length);
+
+    // initialize the array
+    dp_array[0] = nums[0];
+    var sol = nums[0];
+    var i;
+    for(i = 1; i < nums.length; i++) {
+        dp_array[i] = Math.max(0, dp_array[i - 1]) + nums[i];
+        sol = Math.max(dp_array[i], sol);
+    }
+    return sol;
+};
