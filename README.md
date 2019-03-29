@@ -42,6 +42,7 @@ var permute = function(nums) {
 };
 
 var backtrackingSearch = function(sub_sol, remainings, sol) {
+    // base case(the bottom level of search tree)
     if(remainings.length === 0) {
         sol.push(sub_sol);
     }
@@ -78,7 +79,6 @@ Output: [3,4]
 var searchRange = function(nums, target) {
     // if empty list
     if(nums.length === 0) return[-1,-1];
-
     var lo = 0;
     var hi = nums.length - 1;
     var mid;
