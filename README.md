@@ -126,6 +126,8 @@ The algorithm breaks the complicated problem down into sub-problems, and solve e
 3. Fill up the array
 4. Construct the optimal solution from the filled array
 
+Dynamic programming can be implemented by either the top-down approach, that is, recursion, or the bottom-up approach called memorization. Bottom-up approach is particularly used to avoid any use of recursion to save the memory space, since what recursion does is to keep building up the call stack which is very memory-consuming. 
+
 An typical example for dynamic programming would be solving Fibonacci numbers. If want to compute Fib(200002), we break it down into computing the values of Fib(200000) and Fib(200001). Thus we can define the solution recursively as Fib(n) = Fib(n-2) + Fib(n-1).
 
 Suitable for problems: string problems
