@@ -485,6 +485,7 @@ var backtrackingSearch = function(sub_sol, remainings, sol) {
 }
 
 /**
+<<<<<<< HEAD
 Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
 Example:
 Input: n = 4, k = 2
@@ -540,3 +541,50 @@ var backtrackingSearch = function(sub_sols, sols, temp_remainings, limit) {
         }
     }
 }
+=======
+A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
+The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
+How many possible unique paths are there?
+ * @param {number} m
+ * @param {number} n
+ * @return {number}
+ */
+var uniquePaths = function(m, n) {
+    // corner cases
+    if(m === 1 && n === 1) return 1;
+    else if(m < 1 || n < 1) return 0;
+    else if(m === 1 || n === 1) return 1;
+    var paths = new Array();
+
+    // initialization
+    var i;
+    var j;
+    for(i = 0; i < n + 1; i++) {
+        var ini_arr = new Array();
+        for(j = 0; j < m + 1; j++) {
+            ini_arr.push(0);
+        }
+        paths.push(ini_arr);
+    }
+    // (1,2) --> 1
+    paths[1][2] = 1;
+    // (2,1) --> 1
+    paths[2][1] = 1;
+    // (2,2) --> 2
+    paths[2][2] = 2;
+    console.log(paths)
+
+    var row;
+    var col;
+    for(row = 1; row <= n; row++) {
+        for(col = 1; col <= m; col++) {
+            if(row == 1 && col === 1) continue;
+            else if(row === 1 && col === 2) continue;
+            else if(col === 1 && row === 2) continue;
+            else if(row === 2 && col === 2) continue;
+            else paths[row][col] = paths[row - 1][col] + paths[row][col - 1];
+        }
+    }
+    return paths[n][m];
+};
+>>>>>>> eae91b5c726fe0cd03271a6180b4e2eb48521d55

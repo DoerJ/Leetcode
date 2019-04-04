@@ -224,3 +224,91 @@ var maxSubArray = function(nums) {
     }
     return sol;
 };
+
+/**
+Given two binary strings, return their sum (also a binary string).
+The input strings are both non-empty and contains only characters 1 or 0.
+
+Example 1:
+Input: a = "11", b = "1"
+Output: "100"
+
+Example 2:
+Input: a = "1010", b = "1011"
+Output: "10101"
+ * @param {string} a
+ * @param {string} b
+ * @return {string}
+ */
+var addBinary = function(a, b) {
+    var carry_bit = 0;
+    var sol_array = new Array();
+    var sol_str = '';
+
+    // fill up binary with '0'
+    switch(a.length < b.length) {
+        case true:
+            a = a.padStart(b.length, '0');
+            break;
+        case false:
+            b = b.padStart(a.length, '0');
+            break;
+    }
+    var i = a.length - 1;
+    while(i >= 0) {
+        if(carry_bit === 0) {
+            if(a.charAt(i) === '1' && b.charAt(i) === '1') {
+                carry_bit = 1;
+                sol_array.push('0');
+            }
+            else if(a.charAt(i) == '0' && b.charAt(i) === '0') {
+                sol_array.push('0');
+            }
+            else{
+                sol_array.push('1');
+            }
+        }
+        // carry bit 1
+        else {
+            if(a.charAt(i) === '1' && b.charAt(i) === '1') {
+                sol_array.push('1');
+            }
+            else if(a.charAt(i) == '0' && b.charAt(i) === '0') {
+                carry_bit = 0;
+                sol_array.push('1');
+            }
+            else{
+                sol_array.push('0');
+            }
+        }
+        i--;
+    }
+    if(carry_bit == 1) {
+        sol_array.push('1');
+    }
+    // convert arr to str
+    var j = sol_array.length - 1;
+    while(j >= 0) {
+        sol_str = sol_str.concat(sol_array[j]);
+        j--;
+    }
+    return sol_str;
+};
+
+/**
+You are climbing a stair case. It takes n steps to reach to the top.
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+Note: Given n will be a positive integer.
+ * @param {number} n
+ * @return {number}
+ */
+var climbStairs = function(n) {
+    var climb_steps = new Array();
+    climb_steps.push(1);
+    climb_steps.push(1);
+    var i;
+    for(i = 2; i < n + 1; i++) {
+        climb_steps[i] = climb_steps[i - 1] + climb_steps[i - 2];
+    }
+    return climb_steps[n];
+};
