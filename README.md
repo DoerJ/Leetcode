@@ -5,7 +5,7 @@ My solutions to easy &amp; medium challenges
 ### Backtracking Searching(DFS)
 An algorithm that iterates through all the possible solution. Suitable for problems: permutations
 
-Example:
+Example: Permutation
 ```javascript
 /**
 Given a collection of distinct integers, return all possible permutations.
@@ -63,7 +63,7 @@ var backtrackingSearch = function(sub_sol, remainings, sol) {
 ### Binary Search(half-interval search)
 The search algorithm that finds the position of a target value within a sorted array, normally using pointers lo, mid, hi. Suitable from problems that contain sorted array, and requires O(logn) time and space complexity.
 
-Example:
+Example: Range searching
 ```javascript
 /**
 Given an array of integers nums sorted in ascending order, find the starting and ending position of a given target value.
@@ -126,13 +126,13 @@ The algorithm breaks the complicated problem down into sub-problems, and solve e
 3. Fill up the array
 4. Construct the optimal solution from the filled array
 
-Dynamic programming can be implemented by either the top-down approach, that is, recursion, or the bottom-up approach called memorization. Bottom-up approach is particularly used to avoid any use of recursion to save the memory space, since what recursion does is to keep building up the call stack which is very memory-consuming. 
+Dynamic programming can be implemented by either the top-down approach, that is, recursion, or the bottom-up approach called memorization. Bottom-up approach is particularly used to avoid any use of recursion to save the memory space, since what recursion does is to keep building up the call stack which is very memory-consuming.
 
 An typical example for dynamic programming would be solving Fibonacci numbers. If want to compute Fib(200002), we break it down into computing the values of Fib(200000) and Fib(200001). Thus we can define the solution recursively as Fib(n) = Fib(n-2) + Fib(n-1).
 
 Suitable for problems: string problems
 
-Example:
+Example 1: The subarray with maximum sum
 ```javascript
 /**
 Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
@@ -158,5 +158,26 @@ var maxSubArray = function(nums) {
         sol = Math.max(dp_array[i], sol);
     }
     return sol;
+};
+```
+
+Example 2: Staircase problem
+```javascript
+/**
+You are climbing a stair case. It takes n steps to reach to the top.
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+Note: Given n will be a positive integer.
+ * @param {number} n
+ * @return {number}
+ */
+var climbStairs = function(n) {
+    var climb_steps = new Array();
+    climb_steps.push(1);
+    climb_steps.push(1);
+    var i;
+    for(i = 2; i < n + 1; i++) {
+        climb_steps[i] = climb_steps[i - 1] + climb_steps[i - 2];
+    }
+    return climb_steps[n];
 };
 ```
