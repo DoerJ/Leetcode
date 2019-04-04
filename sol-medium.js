@@ -485,7 +485,6 @@ var backtrackingSearch = function(sub_sol, remainings, sol) {
 }
 
 /**
-<<<<<<< HEAD
 Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
 Example:
 Input: n = 4, k = 2
