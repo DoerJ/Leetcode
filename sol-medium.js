@@ -541,7 +541,8 @@ var backtrackingSearch = function(sub_sols, sols, temp_remainings, limit) {
         }
     }
 }
-=======
+
+/**
 A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
 The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
 How many possible unique paths are there?
@@ -587,4 +588,3 @@ var uniquePaths = function(m, n) {
     }
     return paths[n][m];
 };
->>>>>>> eae91b5c726fe0cd03271a6180b4e2eb48521d55
