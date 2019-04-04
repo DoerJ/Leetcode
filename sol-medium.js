@@ -483,3 +483,60 @@ var backtrackingSearch = function(sub_sol, remainings, sol) {
         }
     }
 }
+
+/**
+Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
+Example:
+Input: n = 4, k = 2
+Output:
+[
+  [2,4],
+  [3,4],
+  [2,3],
+  [1,2],
+  [1,3],
+  [1,4],
+]
+ * @param {number} n
+ * @param {number} k
+ * @return {number[][]}
+ */
+var combine = function(n, k) {
+    var sols = new Array();
+    if(n < 1 || k < 1) return permutations;
+    else {
+        // initialization
+        var i;
+        var remainings = new Array();
+        for(i = 1; i <= n; i++) {
+            remainings.push(i);
+        }
+        var j;
+        for(j = 0; j < remainings.length; j++) {
+            var sub_sols = new Array();
+            sub_sols.push(remainings[j]);
+            // make shallow copy of remainings
+            var temp_remainings = remainings.slice();
+            temp_remainings.splice(0, j + 1);
+            backtrackingSearch(sub_sols, sols, temp_remainings, k);
+        }
+        return sols;
+    }
+};
+
+var backtrackingSearch = function(sub_sols, sols, temp_remainings, limit) {
+    // base case
+    if(sub_sols.length === limit) {
+        sols.push(sub_sols);
+    }
+    else {
+        var i;
+        for(i = 0; i < temp_remainings.length; i++) {
+            var temp_sols = sub_sols.slice();
+            temp_sols.push(temp_remainings[i]);
+            var sub_remainings = temp_remainings.slice();
+            sub_remainings.splice(0, i + 1);
+            backtrackingSearch(temp_sols, sols, sub_remainings, limit);
+        }
+    }
+}
