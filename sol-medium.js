@@ -530,3 +530,63 @@ var uniquePaths = function(m, n) {
     }
     return paths[n][m];
 };
+
+/**
+Given a set of candidate numbers (candidates) (without duplicates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.
+The same repeated number may be chosen from candidates unlimited number of times.
+
+Note:
+
+All numbers (including target) will be positive integers.
+The solution set must not contain duplicate combinations.
+Example 1:
+
+Input: candidates = [2,3,6,7], target = 7,
+A solution set is:
+[
+  [7],
+  [2,2,3]
+]
+ * @param {number[]} candidates
+ * @param {number} target
+ * @return {number[][]}
+ */
+var combinationSum = function(candidates, target) {
+    var sols = new Array();
+    if(candidates.length === 0) return sols;
+    var i;
+    for(i = 0; i < candidates.length; i++) {
+        var sum = candidates[i];
+        var sub_sols = new Array();
+        sub_sols.push(candidates[i])
+        backtrackingSearch(sum, target, candidates, sub_sols, sols);
+    }
+    return sols;
+};
+
+var backtrackingSearch = function(sum, target, candidates, sub_sols, sols) {
+    // base case
+    if(sum === target) {
+        // sort sub_sols
+        sub_sols.sort(function(a, b) { return a - b; });
+        // check if duplicated
+        if(JSON.stringify(sols).indexOf(JSON.stringify(sub_sols)) === -1) {
+            sols.push(sub_sols);
+        }
+    }
+    else if(sum > target) return;
+    // sum < target
+    else {
+        var complement = target - sum;
+        var j;
+        for(j = 0; j < candidates.length; j++) {
+            if(candidates[j] <= complement) {
+                var sub_sum = sum;
+                sub_sum += candidates[j];
+                var temp_sols = sub_sols.slice();
+                temp_sols.push(candidates[j]);
+                backtrackingSearch(sub_sum, target, candidates, temp_sols, sols);
+            }
+        }
+    }
+}
