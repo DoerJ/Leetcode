@@ -213,6 +213,8 @@ An typical example for dynamic programming would be solving Fibonacci numbers. I
 
 Suitable for problems: string problems
 
+Note: The following examples are all implemented in DP with memorization(bottom-up approach)
+
 Example 1: The subarray with maximum sum
 ```javascript
 /**
