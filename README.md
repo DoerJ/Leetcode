@@ -3,9 +3,9 @@ My solutions to easy &amp; medium challenges
 ## Algorithms and Examples
 
 ### Backtracking Searching(DFS)
-An algorithm that iterates through all the possible solution. Suitable for problems: permutations
+An algorithm that iterates through all the possible solution. Suitable for problems: permutations, subsets
 
-Example: Permutation
+Example 1: Permutation
 ```javascript
 /**
 Given a collection of distinct integers, return all possible permutations.
@@ -58,6 +58,49 @@ var backtrackingSearch = function(sub_sol, remainings, sol) {
     }
 }
 
+```
+
+Example 2: Find all the subsets
+```javascript
+/**
+Given a set of distinct integers, nums, return all possible subsets (the power set).
+
+Note: The solution set must not contain duplicate subsets.
+
+Example:
+
+Input: nums = [1,2,3]
+Output:
+[
+  [3],
+  [1],
+  [2],
+  [1,2,3],
+  [1,3],
+  [2,3],
+  [1,2],
+  []
+]
+
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var subsets = function(nums) {
+    var sols = new Array();
+    var sub_sols = new Array();
+    var current_pos = 0;
+    backtrackingSearch(sub_sols, sols, current_pos, nums);
+    return sols;
+};
+
+var backtrackingSearch = function(sub_sols, sols, current_pos, nums) {
+    sols.push(sub_sols);
+    var i;
+    // set the initial iterator as the current position to avoid the duplication
+    for(i = current_pos; i < nums.length; i++) {
+        backtrackingSearch(sub_sols.concat(nums[i]), sols, i + 1, nums);
+    }
+}
 ```
 
 ### Binary Search(half-interval search)
