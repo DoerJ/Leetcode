@@ -686,3 +686,38 @@ var backtrackingSearch = function(sub_sols, sols, current_pos, nums) {
         backtrackingSearch(sub_sols.concat(nums[i]), sols, i + 1, nums);
     }
 }
+
+/**
+Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+
+For example, given n = 3, a solution set is:
+
+[
+  "((()))",
+  "(()())",
+  "(())()",
+  "()(())",
+  "()()()"
+]
+ * @param {number} n
+ * @return {string[]}
+ */
+var generateParenthesis = function(n) {
+    var sols = new Array();
+    if(n < 1) return sols;
+    backtrackingSearch("", 0, 0, n, sols);
+    return sols;
+};
+
+var backtrackingSearch = function(parenthesis, open, close, limit, sols) {
+    // base case
+    if(parenthesis.length === limit * 2) sols.push(parenthesis);
+    else {
+        if(open < limit) {
+            backtrackingSearch(parenthesis.concat('('), open + 1, close, limit, sols);
+        }
+        if(close < open) {
+            backtrackingSearch(parenthesis.concat(')'), open, close + 1, limit, sols);
+        }
+    }
+}
