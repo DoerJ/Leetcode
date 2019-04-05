@@ -3,7 +3,7 @@ My solutions to easy &amp; medium challenges
 ## Algorithms and Examples
 
 ### Backtracking Searching(DFS)
-An algorithm that iterates through all the possible solution by incrementally builds candidates to solutions. "Backtrack" refers to getting back to the steps before after reaching some levels of the search tree. Suitable for problems: permutations, subsets
+An algorithm that iterates through all the possible solution by incrementally building candidates to solutions. "Backtrack" refers to getting back to the steps before after reaching some levels of the search tree. Suitable for problems: permutations, subsets
 
 Example 1: Permutation
 ```javascript
