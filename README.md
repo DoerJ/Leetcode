@@ -274,3 +274,34 @@ var uniquePaths = function(m, n) {
     return paths[n][m];
 };
 ```
+
+## Tips
+
+### Avoid inner function in Javascript
+An inner function is a function nested inside another function.
+```javascript
+function foo(a, b) {
+    function bar() {
+        return a + b;
+    }
+
+    return bar();
+}
+
+foo(1, 2);
+```
+In Javascript, functions are values. Whenever declare a function, Javascript engine creates a function object which is a value, that can be assigned to any other variable or passed to a function as a returned value. When foo() is called, a function object bar() is created, and destroyed at the time foo() exits. If foo() gets called multiple times(says 100 times), then 100 function objects called bar() will be created and destroyed, which causes many unnecessary works for Javascript engine, and also brings down the efficiency in terms of memory space and runtime.
+
+To avoid it, it's better to place bar() outside foo().
+```javascript
+function foo(a, b) {
+    return bar(a, b);
+}
+
+function bar(a, b) {
+    return a + b;
+}
+
+foo(1, 2);
+```
+In this way, bar() function object will be created only once. When foo() gets called, bar() will also be called and passed to foo() as a returned value.
