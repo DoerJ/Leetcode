@@ -721,3 +721,42 @@ var backtrackingSearch = function(parenthesis, open, close, limit, sols) {
         }
     }
 }
+
+/**
+Given an array with n objects colored red, white or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white and blue.
+Here, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively.
+
+Note: You are not suppose to use the library's sort function for this problem.
+
+Example:
+
+Input: [2,0,2,1,1,0]
+Output: [0,0,1,1,2,2]
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var sortColors = function(nums) {
+    var counts = [];
+    var count = 1
+    // store the count for integers
+    while(count <= 3) {
+        counts.push(0);
+        count++;
+    }
+    var j;
+    for(j = 0; j < nums.length; j++) {
+        counts[nums[j]]++;
+    }
+    // modify the count array
+    for(j = 1; j <= 2; j++) {
+        counts[j] += counts[j - 1];
+    }
+    var temp_nums = nums.slice();
+    // place integers to output list
+    for(j = 0; j < temp_nums.length; j++) {
+        var pos = counts[temp_nums[j]] - 1;
+        nums[pos] = temp_nums[j];
+        counts[temp_nums[j]]--;
+    }
+    return;
+};
