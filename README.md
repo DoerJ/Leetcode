@@ -315,6 +315,58 @@ var uniquePaths = function(m, n) {
 };
 ```
 
+### Sorting
+
+#### Counting Sort
+Counting sort is a sorting algorithm which stores the counts of each integer elements in the list, modify the count array, and finally place each element into correct index in the output sequence. The steps are:
+1. Create a count array to store the count(frequency) of each unique element in the list
+2. Modify the count array such that each element at each index stores the sum of the previous counts
+3. Iterate through the input sequence and place each element into corresponding index in the output sequence
+
+The key technique of this sorting algorithm is to use the input values to represent their indexes in the count array. Thus counting sort is only suitable for problem: sort the non-negative integers
+
+Example: Sort colors
+```javascript
+/**
+Given an array with n objects colored red, white or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white and blue.
+Here, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively.
+
+Note: You are not suppose to use the library's sort function for this problem.
+
+Example:
+
+Input: [2,0,2,1,1,0]
+Output: [0,0,1,1,2,2]
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var sortColors = function(nums) {
+    var counts = [];
+    var count = 1
+    // store the count for integers
+    while(count <= 3) {
+        counts.push(0);
+        count++;
+    }
+    var j;
+    for(j = 0; j < nums.length; j++) {
+        counts[nums[j]]++;
+    }
+    // modify the count array
+    for(j = 1; j <= 2; j++) {
+        counts[j] += counts[j - 1];
+    }
+    var temp_nums = nums.slice();
+    // place integers to output list
+    for(j = 0; j < temp_nums.length; j++) {
+        var pos = counts[temp_nums[j]] - 1;
+        nums[pos] = temp_nums[j];
+        counts[temp_nums[j]]--;
+    }
+    return;
+};
+```
+
 ## Tips
 
 ### Avoid inner function in Javascript
