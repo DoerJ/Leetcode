@@ -760,3 +760,62 @@ var sortColors = function(nums) {
     }
     return;
 };
+
+/**
+Given a collection of candidate numbers (candidates) and a target number (target),
+find all unique combinations in candidates where the candidate numbers sums to target.
+Each number in candidates may only be used once in the combination.
+
+Note:
+
+All numbers (including target) will be positive integers.
+The solution set must not contain duplicate combinations.
+Example 1:
+
+Input: candidates = [10,1,2,7,6,1,5], target = 8,
+A solution set is:
+[
+  [1, 7],
+  [1, 2, 5],
+  [2, 6],
+  [1, 1, 6]
+]
+ * @param {number[]} candidates
+ * @param {number} target
+ * @return {number[][]}
+ */
+var combinationSum2 = function(candidates, target) {
+    var sols = [];
+    candidates.sort(function(a, b) { return a - b; })
+    if(candidates.length === 0 || candidates[0] > target) return sols;
+    var i;
+    for(i = 0; i < candidates.length; i++) {
+        var remainings = candidates.slice();
+        remainings.splice(i, 1);
+        backtrackingSearch([candidates[i]], sols, candidates[i], remainings, target);
+    }
+    return sols;
+};
+
+var backtrackingSearch = function(sub_sols, sols, sum, remainings, target) {
+    if(sum === target) {
+        // sort sub_sols
+        sub_sols.sort(function(a, b) { return a - b; });
+        if(JSON.stringify(sols).indexOf(JSON.stringify(sub_sols)) === -1) sols.push(sub_sols);
+    }
+    else if(sum > target) return;
+    else {
+        var j;
+        for(j = 0; j < remainings.length; j++) {
+            var sub_sum = sum;
+            sub_sum += remainings[j];
+
+            var temp_sols = sub_sols.slice();
+            temp_sols.push(remainings[j]);
+
+            var sub_remainings = remainings.slice();
+            sub_remainings.splice(j, 1);
+            backtrackingSearch(temp_sols, sols, sub_sum, sub_remainings, target);
+        }
+    }
+}
