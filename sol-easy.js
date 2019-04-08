@@ -369,3 +369,34 @@ MinStack.prototype.getMin = function() {
  * var param_3 = obj.top()
  * var param_4 = obj.getMin()
  */
+
+ /**
+ Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times.
+You may assume that the array is non-empty and the majority element always exist in the array.
+
+Example 1:
+
+Input: [3,2,3]
+Output: 3
+  * @param {number[]} nums
+  * @return {number}
+  */
+ var majorityElement = function(nums) {
+     // use hash map
+     var map = new Map();
+     var i;
+     for(i = 0; i < nums.length; i++) {
+         if(!map.has(nums[i])) map.set(nums[i], 1);
+         else map.set(nums[i], map.get(nums[i]) + 1);
+     }
+     // get the key with the max value
+     var max = 0;
+     var max_key;
+     map.forEach(function(val, key) {
+         if(val > max) {
+             max_key = key;
+             max = val;
+         };
+     });
+     return max_key;
+ };
