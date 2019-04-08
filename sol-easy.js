@@ -312,3 +312,60 @@ var climbStairs = function(n) {
     }
     return climb_steps[n];
 };
+
+/**
+Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+
+push(x) -- Push element x onto stack.
+pop() -- Removes the element on top of the stack.
+top() -- Get the top element.
+getMin() -- Retrieve the minimum element in the stack.
+ * initialize your data structure here.
+ */
+var MinStack = function() {
+    this.stack = [];
+    this.min_stack = [];
+};
+
+/**
+ * @param {number} x
+ * @return {void}
+ */
+MinStack.prototype.push = function(x) {
+    this.stack.push(x);
+    // get the min item in stack
+    var min_item = this.getMin();
+    if(min_item === undefined) this.min_stack.push(x);
+    else this.min_stack.push(Math.min(x, min_item));
+};
+
+/**
+ * @return {void}
+ */
+MinStack.prototype.pop = function() {
+    this.stack.pop();
+    this.min_stack.pop();
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.top = function() {
+    return this.stack[this.stack.length - 1];
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.getMin = function() {
+    return this.min_stack[this.min_stack.length - 1];
+};
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * var obj = new MinStack()
+ * obj.push(x)
+ * obj.pop()
+ * var param_3 = obj.top()
+ * var param_4 = obj.getMin()
+ */
