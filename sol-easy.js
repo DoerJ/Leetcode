@@ -430,3 +430,36 @@ var reverseList = function(head) {
     }
     return prev_node;
 };
+
+/**
+Given a singly linked list, determine if it is a palindrome.
+
+Example 1:
+
+Input: 1->2
+Output: false
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var isPalindrome = function(head) {
+    // push val into a list
+    var val_list = [];
+    while(head !== null) {
+        val_list.push(head.val);
+        head = head.next;
+    }
+
+    // iterate and compare the value list
+    var j;
+    for(j = 0; j < (val_list.length)/2; j++) {
+        if(val_list[j] !== val_list[val_list.length - 1 - j]) return false;
+    }
+    return true;
+};
