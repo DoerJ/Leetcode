@@ -400,3 +400,33 @@ Output: 3
      });
      return max_key;
  };
+
+ /**
+ Reverse a singly linked list.
+
+Example:
+
+Input: 1->2->3->4->5->NULL
+Output: 5->4->3->2->1->NULL
+
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function(head) {
+    var prev_node = null;
+    var curr_node = head;
+    while(curr_node !== null) {
+        var next_node = curr_node.next;
+        curr_node.next = prev_node;
+        prev_node = curr_node;
+        curr_node = next_node;
+    }
+    return prev_node;
+};
