@@ -491,3 +491,47 @@ var moveZeroes = function(nums) {
     }
     return nums;
 };
+
+/**
+Given an array of integers where 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once.
+Find all the elements of [1, n] inclusive that do not appear in this array.
+Could you do it without extra space and in O(n) runtime? You may assume the returned list does not count as extra space.
+
+Example:
+
+Input:
+[4,3,2,7,8,2,3,1]
+
+Output:
+[5,6]
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var findDisappearedNumbers = function(nums) {
+    // sort the list
+    nums.sort(function(a, b) { return a - b; });
+
+    var i = 1;
+    while(i <= nums.length) {
+        // if ele at the right place or swap doesn't change
+        if(nums[i - 1] === i || nums[i - 1] === nums[nums[i - 1] - 1]) i++;
+        // if ele not at the right place
+        else if(nums[i - 1] !== i) swap(nums, i - 1, nums[i - 1] - 1);
+    }
+    console.log(nums);
+
+    var j = 1;
+    var sols = [];
+    while(j <= nums.length) {
+        if(nums[j - 1] !== j) sols.push(j);
+        j++;
+    }
+    return sols;
+};
+
+// the swap function
+var swap = function(nums, i, j) {
+    var temp = nums[i];
+    nums[i] = nums[j];
+    nums[j] = temp;
+}
