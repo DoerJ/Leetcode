@@ -535,3 +535,35 @@ var swap = function(nums, i, j) {
     nums[i] = nums[j];
     nums[j] = temp;
 }
+
+/**
+Given an integer array, you need to find one continuous subarray that if you only sort this subarray in ascending order,
+then the whole array will be sorted in ascending order, too.
+You need to find the shortest such subarray and output its length.
+
+Example 1:
+Input: [2, 6, 4, 8, 10, 9, 15]
+Output: 5
+Explanation: You need to sort [6, 4, 8, 10, 9] in ascending order to make the whole array sorted in ascending order.
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findUnsortedSubarray = function(nums) {
+
+    // the boundary of unsorted sub-array
+    var left = nums.length;
+    var right = 0;
+
+    var i;
+    var j;
+    for(i = 0; i < nums.length - 1; i++) {
+        for(j = i + 1; j < nums.length; j++) {
+            if(nums[j] < nums[i]) {
+                left = Math.min(left, i);
+                right = Math.max(right, j);
+            }
+        }
+    }
+    console.log('right: ' + right + ' left: ' + left)
+    return right - left < 0 ? 0 : right - left + 1;
+};
