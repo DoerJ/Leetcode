@@ -424,7 +424,7 @@ Merge(arr[], l, m, r)
   Copy any remaining items in L1 or L2 into arr[k]
 </pre>
 
-The time complexity of merge sort is O(n*logn) since merge sort always divides array into halves and takes O(logn) times in total to divide into sub-arrays of size 1(think it as a binary tree). Each layer takes linear time to sort and merge, thus O(logn) * O(n) = O(n*logn) in total on time complexity.  
+The time complexity of merge sort is O(NlogN) since merge sort always divides array into halves and takes O(logN) times in total to divide into sub-arrays of size 1(think it as a binary tree). Each layer takes linear time to sort and merge, thus O(logN)O(N) = O(NlogN) in total on time complexity.  
 
 ## Tips
 
