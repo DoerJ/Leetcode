@@ -858,3 +858,42 @@ var searchForTarget = function(matrix, row, col, target) {
     else if(matrix[row][col] < target) return searchForTarget(matrix, row + 1, col, target);
     else return searchForTarget(matrix, row, col - 1, target);
 }
+
+/**
+Given a non negative integer number num. For every numbers i in the range 0 ≤ i ≤ num calculate the number of 1's in their binary representation and return them as an array.
+
+Example 1:
+
+Input: 2
+Output: [0,1,1]
+Example 2:
+
+Input: 5
+Output: [0,1,1,2,1,2]
+ * @param {number} num
+ * @return {number[]}
+ */
+var countBits = function(num) {
+    // store the # of 1's at binary representation of each idex i
+    var ones = [];
+
+    // initialization on dp array
+    var i;
+    for(i = 0; i <= num; i++) {
+        if(i === 0) ones.push(0);
+        else if(i === 1) ones.push(1);
+        else if(i === 2) ones.push(1);
+        else ones.push(0);
+    }
+
+    var j;
+    for(j = 3; j <= num; j++) {
+        // get the remainder of number to check if odd or even
+        var remainder = j % 2;
+
+        // if odd number
+        if(remainder === 1) ones[j]++;
+        ones[j] += ones[Math.floor(j/2)];
+    }
+    return ones;
+};
