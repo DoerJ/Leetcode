@@ -403,7 +403,28 @@ var findUnsortedSubarray = function(nums) {
     console.log('right: ' + right + ' left: ' + left)
     return right - left < 0 ? 0 : right - left + 1;
 };
-```  
+```
+
+#### Merge sort
+Merge sort is a divide and conquer algorithm which recursively divides the unsorted array halves until all the sub-arrays are of size 1, then sort and merge each sub-array until the entire array is sorted. The following is the pseudo code of merge sort:
+<pre>
+MergeSort(arr[], l, r)
+  if l < r
+    - Find the middle point m of the array
+    - Recursively MergeSort(arr[], l, m) the first half of the array
+    - Recursively MergeSort(arr[], m + 1, r) the second half of the array
+    - Merge(arr[], l, m, r)
+
+Merge(arr[], l, m, r)
+  Create the temp arrays L1 and L2 to store the item values in two halves
+  Find the size of two halves n1 and n2 to be merged
+  Create iterators i, j = 0, and k to track the index position of arr[] to fill in the item in-place
+  while(i < n1 && j < n2)
+    Compare L1[i] and L2[j], and place the smaller item into arr[k]
+  Copy any remaining items in L1 or L2 into arr[k]
+</pre>
+
+The time complexity of merge sort is O(n*logn) since merge sort always divides array into halves and takes O(logn) times in total to divide into sub-arrays of size 1(think it as a binary tree). Each layer takes linear time to sort and merge, thus O(logn) * O(n) = O(n*logn) in total on time complexity.  
 
 ## Tips
 
