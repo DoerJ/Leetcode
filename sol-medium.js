@@ -897,3 +897,41 @@ var countBits = function(num) {
     }
     return ones;
 };
+
+/**
+Given a non-empty array of integers, return the k most frequent elements.
+
+Example 1:
+
+Input: nums = [1,1,1,2,2,3], k = 2
+Output: [1,2]
+Example 2:
+
+Input: nums = [1], k = 1
+Output: [1]
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */
+var topKFrequent = function(nums, k) {
+
+    // use hash map to store the frequenceis
+    var map = new Map;
+    var i;
+    for(i = 0; i < nums.length; i++) {
+        if(!map.has(nums[i])) map.set(nums[i], 1);
+        else {
+            map.set(nums[i], map.get(nums[i]) + 1);
+        }
+    }
+
+    // sort the map based on frequencies
+    var entries = [...map.entries()].sort(function(a, b) { return b[1] - a[1] });
+
+    var sols = [];
+    var j;
+    for(j = 0; j < k; j++) {
+        sols.push(entries[j][0]);
+    }
+    return sols;
+};
