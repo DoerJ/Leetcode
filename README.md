@@ -466,4 +466,4 @@ var world = [...hello, 'world']
 console.log(world) // the output: ['hello', 'world']
 </pre>
 
-In the code segment above, '...' operator is passing the properties(values) of array "hello" into array "world", concatnating the values of the both arrays. The use of '...' operator is kinda similar to the f string in python. 
+In the code segment above, '...' operator is passing the properties(values) of array "hello" into array "world", concatnating the values of the both arrays. The use of '...' operator is kinda similar to f string in python. 
