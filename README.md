@@ -469,11 +469,11 @@ console.log(world) // the output: ['hello', 'world']
 In the code segment above, '...' operator is passing the properties(values) of array "hello" into array "world", concatenating the values of the both arrays. The use of '...' operator is similar to f string in python.
 
 ### Sort tuples in JavaScript
-To sort the list based on specific elements in each tuple within the list, we can use sort() and pass in the function as param to define the rule of sorting.
+To sort the list based on specific elements in each tuple within the list, we can use sort() and pass in the function as param to define the sorting rule.
 
 Example:
 <pre>
-// sort the following list based on the second element of each tuple 
+// sort the following list based on the second element of each tuple
 var arr = [[3,2], [4,1], [2,9]]
 
 // sort the tuples
