@@ -456,3 +456,14 @@ function bar(a, b) {
 foo(1, 2);
 ```
 In this way, bar() function object will be created only once. When foo() gets called, bar() will also be called and passed to foo() as a returned value.
+
+### Object spread operator
+The object spread operator "..." is used for spreading out the properties of the an object to a new object. The following is an example of spread operator:
+<pre>
+var hello = ['hello']
+var world = [...hello, 'world']
+
+console.log(world) // the output: ['hello', 'world']
+</pre>
+
+In the code segment above, '...' operator is passing the properties(values) of array "hello" into array "world", concatnating the values of the both arrays. The use of '...' operator is kinda similar to the f string in python. 
