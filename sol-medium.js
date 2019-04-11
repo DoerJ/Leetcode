@@ -1009,7 +1009,7 @@ If that amount of money cannot be made up by any combination of the coins, retur
 Example 1:
 
 Input: coins = [1, 2, 5], amount = 11
-Output: 3 
+Output: 3
 Explanation: 11 = 5 + 5 + 1
 Example 2:
 
@@ -1030,7 +1030,7 @@ var coinChange = function(coins, amount) {
         dp_arr[count] = -1;
     }
     dp_arr[0] = 0;
-    var set  = new Set();
+    var set = new Set();
     var i;
     for(i = 0; i < coins.length; i++) {
         set.add(coins[i]);
