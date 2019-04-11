@@ -961,3 +961,42 @@ var findDuplicate = function(nums) {
         else return nums[i];
     }
 };
+
+/**
+Given an unsorted array of integers, find the length of longest increasing subsequence.
+
+Example:
+
+Input: [10,9,2,5,3,7,101,18]
+Output: 4
+Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4. 
+ * @param {number[]} nums
+ * @return {number}
+ */
+var lengthOfLIS = function(nums) {
+    // corner case(O(1))
+    if(nums.length === 0) return 0;
+
+    // initialization(O(N))
+    var k;
+    var dp_arr = new Array(nums.length);
+    for(k = 0; k < nums.length; k++) {
+        dp_arr[k] = 1;
+    }
+
+    var i, j;
+    // O(N^2) since two nested loops are used
+    for(i = 1; i < nums.length; i++) {
+        // search backwards from index i to 0
+        for(j = i; j >= 0; j--) {
+            if(nums[j] < nums[i]) {
+                // the recurrence
+                dp_arr[i] = Math.max(dp_arr[j] + 1, dp_arr[i]);
+            }
+        }
+    }
+
+    // sort the dp array to get the max item
+    dp_arr.sort(function(a, b) { return b - a });
+    return dp_arr[0];
+};
