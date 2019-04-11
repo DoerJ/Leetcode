@@ -428,7 +428,7 @@ The time complexity of merge sort is O(NlogN) since merge sort always divides ar
 
 ## Tips
 
-### Avoid inner function in Javascript
+### Avoid inner function in JavaScript
 An inner function is a function nested inside another function.
 ```javascript
 function foo(a, b) {
@@ -441,7 +441,7 @@ function foo(a, b) {
 
 foo(1, 2);
 ```
-In Javascript, functions are values. Whenever declare a function, Javascript engine creates a function object which is a value, that can be assigned to any other variable or passed to a function as a returned value. When foo() is called, a function object bar() is created, and destroyed at the time foo() exits. If foo() gets called multiple times(says 100 times), then 100 function objects called bar() will be created and destroyed, which causes many unnecessary works for Javascript engine, and also brings down the efficiency in terms of memory space and runtime.
+In Javascript, functions are values. Whenever declare a function, JavaScript engine creates a function object which is a value, that can be assigned to any other variable or passed to a function as a returned value. When foo() is called, a function object bar() is created, and destroyed at the time foo() exits. If foo() gets called multiple times(says 100 times), then 100 function objects called bar() will be created and destroyed, which causes many unnecessary works for JavaScript engine, and also brings down the efficiency in terms of memory space and runtime.
 
 To avoid it, it's better to place bar() outside foo().
 ```javascript
@@ -466,4 +466,19 @@ var world = [...hello, 'world']
 console.log(world) // the output: ['hello', 'world']
 </pre>
 
-In the code segment above, '...' operator is passing the properties(values) of array "hello" into array "world", concatnating the values of the both arrays. The use of '...' operator is kinda similar to f string in python. 
+In the code segment above, '...' operator is passing the properties(values) of array "hello" into array "world", concatenating the values of the both arrays. The use of '...' operator is similar to f string in python.
+
+### Sort tuples in JavaScript
+To sort the list based on specific elements in each tuple within the list, we can use sort() and pass in the function as param to define the rule of sorting.
+
+Example:
+<pre>
+// sort the following list based on the second element of each tuple 
+var arr = [[3,2], [4,1], [2,9]]
+
+// sort the tuples
+arr.sort(function(a, b) { return a[1] - b[1] });
+
+// output: [[4, 1], [3, 2], [2, 9]]
+console.log(arr)
+</pre>
