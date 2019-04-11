@@ -969,7 +969,7 @@ Example:
 
 Input: [10,9,2,5,3,7,101,18]
 Output: 4
-Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4. 
+Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
  * @param {number[]} nums
  * @return {number}
  */
@@ -999,4 +999,57 @@ var lengthOfLIS = function(nums) {
     // sort the dp array to get the max item
     dp_arr.sort(function(a, b) { return b - a });
     return dp_arr[0];
+};
+
+/**
+You are given coins of different denominations and a total amount of money amount.
+Write a function to compute the fewest number of coins that you need to make up that amount.
+If that amount of money cannot be made up by any combination of the coins, return -1.
+
+Example 1:
+
+Input: coins = [1, 2, 5], amount = 11
+Output: 3 
+Explanation: 11 = 5 + 5 + 1
+Example 2:
+
+Input: coins = [2], amount = 3
+Output: -1
+ * @param {number[]} coins
+ * @param {number} amount
+ * @return {number}
+ */
+var coinChange = function(coins, amount) {
+    // use bottom-up approach: memorization
+    if(coins.length === 0 || amount === 0) return 0;
+
+    // initialization
+    var dp_arr = []
+    var count;
+    for(count = 0; count <= amount; count++) {
+        dp_arr[count] = -1;
+    }
+    dp_arr[0] = 0;
+    var set  = new Set();
+    var i;
+    for(i = 0; i < coins.length; i++) {
+        set.add(coins[i]);
+    }
+
+    // recurrence
+    var j, k;
+    for(j = 1; j <= amount; j++) {
+        var min = Number.MAX_SAFE_INTEGER;
+        if(set.has(j)) dp_arr[j] = 1;
+        else {
+            for(k = 0; k < coins.length; k++) {
+                if(j > coins[k] && dp_arr[j - coins[k]] !== -1) {
+                    min = Math.min(min, dp_arr[j - coins[k]]);
+                    dp_arr[j] = min + 1;
+                }
+            }
+        }
+    }
+
+    return dp_arr[amount];
 };
