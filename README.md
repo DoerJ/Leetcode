@@ -459,12 +459,12 @@ In this way, bar() function object will be created only once. When foo() gets ca
 
 ### Object spread operator
 The object spread operator "..." is used for spreading out the properties of the an object to a new object. The following is an example of spread operator:
-<pre>
+```javascript
 var hello = ['hello']
 var world = [...hello, 'world']
 
 console.log(world) // the output: ['hello', 'world']
-</pre>
+```
 
 In the code segment above, '...' operator is passing the properties(values) of array "hello" into array "world", concatenating the values of the both arrays. The use of '...' operator is similar to f string in python.
 
@@ -472,7 +472,7 @@ In the code segment above, '...' operator is passing the properties(values) of a
 To sort the list based on specific elements in each tuple within the list, we can use sort() and pass in the function as param to define the sorting rule.
 
 Example:
-<pre>
+```javascript
 // sort the following list based on the second element of each tuple
 var arr = [[3,2], [4,1], [2,9]]
 
@@ -481,4 +481,4 @@ arr.sort(function(a, b) { return a[1] - b[1] });
 
 // output: [[4, 1], [3, 2], [2, 9]]
 console.log(arr)
-</pre>
+```
