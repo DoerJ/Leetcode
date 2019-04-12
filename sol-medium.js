@@ -1053,3 +1053,32 @@ var coinChange = function(coins, amount) {
 
     return dp_arr[amount];
 };
+
+/**
+Given an array of integers and an integer k, you need to find the total number of continuous subarrays whose sum equals to k.
+
+Example 1:
+Input:nums = [1,1,1], k = 2
+Output: 2
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var subarraySum = function(nums, k) {
+    // use hashmap
+
+    var map = new Map();
+
+    // initialization
+    map.set(0, 1);
+    var i;
+    var count = 0;
+    var prev_sum = 0;
+    for(i = 0; i < nums.length; i++) {
+        prev_sum += nums[i];
+        var diff = prev_sum - k;
+        count += map.get(diff) || 0;
+        map.set(prev_sum, (map.get(prev_sum) || 0) + 1);
+    }
+    return count;
+};
