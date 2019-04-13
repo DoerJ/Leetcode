@@ -594,3 +594,30 @@ var hasCycle = function(head) {
     }
     return false;
 };
+
+/**
+Given a non-empty array of integers, every element appears twice except for one. Find that single one.
+
+Note:
+
+Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
+
+Example 1:
+
+Input: [2,2,1]
+Output: 1
+ * @param {number[]} nums
+ * @return {number}
+ */
+var singleNumber = function(nums) {
+
+    nums.sort(function(a, b) { return a - b });
+    if(nums[0] !== nums[1]) return nums[0];
+
+    // the length must be >= 3
+    var i;
+    for(i = 1; i < nums.length - 1; i++) {
+        if(nums[i] !== nums[i - 1] && nums[i] !== nums[i + 1]) return nums[i];
+    }
+    return nums[nums.length - 1];
+};
