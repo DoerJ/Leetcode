@@ -567,3 +567,30 @@ var findUnsortedSubarray = function(nums) {
     console.log('right: ' + right + ' left: ' + left)
     return right - left < 0 ? 0 : right - left + 1;
 };
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+Given a linked list, determine if it has a cycle in it.
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var hasCycle = function(head) {
+    // use hash map
+
+    if(head === null || head.next === null) return false;
+
+    var map = new Map();
+    while(head !== null) {
+        if(map.has(head)) return true;
+        else map.set(head, 1);
+        head = head.next;
+    }
+    return false;
+};
