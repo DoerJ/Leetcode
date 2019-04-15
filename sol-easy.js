@@ -784,3 +784,34 @@ var twoSum = function(numbers, target) {
 
     return sols;
 };
+Given a non-negative integer num, repeatedly add all its digits until the result has only one digit.
+
+Example:
+
+Input: 38
+Output: 2
+Explanation: The process is like: 3 + 8 = 11, 1 + 1 = 2.
+             Since 2 has only one digit, return it.
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var addDigits = function(num) {
+    // use recursion
+    if(num < 10) return num;
+
+    var digits = [];
+
+    // store digits
+    while(num !== 0) {
+        digits.push(num%10);
+        num = Math.floor(num/10);
+    }
+    console.log(digits)
+    var sum = 0;
+    var i;
+    for(i = 0; i < digits.length; i++) {
+        sum += digits[i];
+    }
+    return addDigits(sum);
+};
