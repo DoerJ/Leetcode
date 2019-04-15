@@ -1118,3 +1118,42 @@ var detectCycle = function(head) {
     }
     return null;
 };
+
+/**
+Given a positive integer n, find the least number of perfect square numbers (for example, 1, 4, 9, 16, ...) which sum to n.
+
+Example 1:
+
+Input: n = 12
+Output: 3
+Explanation: 12 = 4 + 4 + 4.
+Example 2:
+
+Input: n = 13
+Output: 2
+Explanation: 13 = 4 + 9.
+
+ * @param {number} n
+ * @return {number}
+ */
+var numSquares = function(n) {
+    // use DP memorization
+    var dp_arr = new Array(n + 1).fill(0);
+
+    // initialization
+    dp_arr[1] = 1;  // 1
+    dp_arr[2] = 2;  // 1 + 1
+    var i, j;
+    for(i = 3; i <= n; i++) {
+        var min = Number.MAX_SAFE_INTEGER;
+        for(j = 1; j <= i; j++) {
+            var power = Math.pow(j, 2);
+            if(power <= i) {
+                min = Math.min(min, dp_arr[i - Math.pow(j, 2)]);
+            }
+        }
+        dp_arr[i] = min + 1;
+    }
+    console.log(dp_arr);
+    return dp_arr[n];
+};
