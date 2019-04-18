@@ -1157,3 +1157,35 @@ var numSquares = function(n) {
     console.log(dp_arr);
     return dp_arr[n];
 };
+
+/**
+Given an integer array nums, find the contiguous subarray within an array (containing at least one number) which has the largest product.
+
+Example 1:
+
+Input: [2,3,-2,4]
+Output: 6
+Explanation: [2,3] has the largest product 6.
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxProduct = function(nums) {
+
+    if(nums.length === 1) return nums[0];
+
+    // initialization
+    var max = nums[0];
+    var min = nums[0];
+    var sol = Number.MIN_SAFE_INTEGER;
+
+    // recurrence
+    var i;
+    for(i = 1; i < nums.length; i++) {
+        var prevMax = max;
+        max = Math.max(max*nums[i], nums[i], min*nums[i]);
+        min = Math.min(prevMax*nums[i], nums[i], min*nums[i]);
+        sol = Math.max(sol, max);
+    }
+
+    return Math.max(nums[0], sol);
+};
