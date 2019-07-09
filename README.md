@@ -2,6 +2,91 @@
 My solutions to easy &amp; medium challenges
 ## Algorithms and Examples
 
+### Recursion
+Recursion is a kind of program flow where the function call itself. Recursion is usually used as a techniques by backtracking search methodology(DFS), and computation for tree.
+
+Example: Symmetric tree
+```javascript
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isSymmetric = function(root) {
+    if(root !== null) return isMirror(root.left, root.right);
+    return true;
+};
+
+var isMirror = function(leftNode, rightNode) {
+    // the boundaries
+    if(leftNode === null && rightNode === null) return true;
+    else if(leftNode === null || rightNode === null) return false;
+    return (leftNode.val === rightNode.val) && isMirror(leftNode.left, rightNode.right)
+    && isMirror(leftNode.right, rightNode.left);
+}
+```
+Example 2: Find the maximum depth of tree
+```javascript
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var maxDepth = function(root) {
+    var max = 0;
+    var getDepth = function(node, depth) {
+        if(node !== null) {
+            if(depth > max) max = depth;
+            getDepth(node.left, depth + 1);
+            getDepth(node.right, depth + 1);
+        }
+    }
+    getDepth(root, 1);
+    return max;
+};
+
+```
+
+Example 3: Binary tree in-order traverse
+```javascript
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var inorderTraversal = function(root) {
+    // in-order: left, root, right
+    var nodes = new Array();
+    var inOrderTraverse = function(node) {
+        if(node !== null) {
+            inOrderTraverse(node.left);
+            nodes.push(node.val);
+            inOrderTraverse(node.right);
+        }
+    }
+    if(root !== null) inOrderTraverse(root);
+    return nodes;
+};
+```
+
 ### Backtracking Searching(DFS)
 An algorithm that iterates through all the possible solution by incrementally building candidates to solutions. "Backtrack" refers to getting back to the steps before after reaching some levels of the search tree. Suitable for problems: permutations, subsets
 
