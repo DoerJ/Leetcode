@@ -1,4 +1,4 @@
-# leetcode-mySolutions
+# leetcode-my-solutions
 My solutions to easy &amp; medium challenges
 ## Algorithms and Examples
 
